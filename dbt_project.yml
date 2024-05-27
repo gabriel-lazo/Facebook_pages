@@ -7,6 +7,8 @@ vars:
   pages: "{{ ref('stg_facebook_pages__page') }}"
   post_metrics: "{{ ref('stg_facebook_pages__lifetime_post_metrics_total') }}"
   page_metrics: "{{ ref('stg_facebook_pages__daily_page_metrics_total') }}"
+  facebook_pages_schema: facebook_pages2
+  facebook_pages_database: test_catalog_dev
 models:
   facebook_pages:
     +schema: facebook_pages
