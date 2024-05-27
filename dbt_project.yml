@@ -2,14 +2,21 @@ name: 'facebook_pages'
 version: '0.2.0'
 config-version: 2
 require-dbt-version: [">=1.3.0", "<2.0.0"]
+
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['spark_utils', 'dbt_utils']
+    
 vars:
   posts: "{{ ref('stg_facebook_pages__post_history') }}"
   pages: "{{ ref('stg_facebook_pages__page') }}"
   post_metrics: "{{ ref('stg_facebook_pages__lifetime_post_metrics_total') }}"
   page_metrics: "{{ ref('stg_facebook_pages__daily_page_metrics_total') }}"
+
+vars:
   facebook_pages_schema: facebook_pages2
   facebook_pages_database: test_catalog_dev
 models:
   facebook_pages:
-    +schema: facebook_pages
+    +schema: facebook_pages2
     +materialized: table
